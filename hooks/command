@@ -10,7 +10,6 @@ fi
 args=(
   "-it"
   "--rm"
-  "--volume" "$PWD:${BUILDKITE_PLUGIN_DOCKER_WORKDIR}"
   "--workdir" "${BUILDKITE_PLUGIN_DOCKER_WORKDIR}"
 )
 
