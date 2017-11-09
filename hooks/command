@@ -11,6 +11,7 @@ args=(
   "-it"
   "--rm"
   "--workdir" "${BUILDKITE_PLUGIN_DOCKER_WORKDIR}"
+  "--volume" "$HOME/.ssh:/mnt/ssh/"
 )
 
 # Handle the mount-buildkite-agent option
