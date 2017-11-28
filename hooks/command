@@ -39,4 +39,4 @@ args+=(
 )
 
 echo "--- :docker: Running ${BUILDKITE_COMMAND} in ${BUILDKITE_PLUGIN_DOCKER_IMAGE} with ${args[@]}"
-docker run "${args[@]}" "${BUILDKITE_PLUGIN_DOCKER_IMAGE}" bash -c "${BUILDKITE_COMMAND}"
+docker run "${args[@]}" "${BUILDKITE_PLUGIN_DOCKER_IMAGE}" "${BUILDKITE_COMMAND}"
