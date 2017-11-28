@@ -31,5 +31,9 @@ while IFS='=' read -r name _ ; do
   fi
 done < <(env | sort)
 
+echo "--- Starting ssh agent"
+eval $(ssh-agent -s)
+ssh-add ~/.ssh/id_rsa
+
 echo "--- :docker: Running ${BUILDKITE_COMMAND} in ${BUILDKITE_PLUGIN_DOCKER_IMAGE} with ${args[@]}"
 docker run "${args[@]}" "${BUILDKITE_PLUGIN_DOCKER_IMAGE}" bash -c "${BUILDKITE_COMMAND}"
