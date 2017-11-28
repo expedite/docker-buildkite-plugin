@@ -11,7 +11,6 @@ args=(
   "-it"
   "--rm"
   "--workdir" "${BUILDKITE_PLUGIN_DOCKER_WORKDIR}"
-  "--volume" "$SSH_AUTH_SOCK:/ssh-agent"
 )
 
 # Handle the mount-buildkite-agent option
@@ -34,6 +33,10 @@ done < <(env | sort)
 echo "--- Starting ssh agent"
 eval $(ssh-agent -s)
 ssh-add ~/.ssh/id_rsa
+
+args+=(
+  "--volume" "$SSH_AUTH_SOCK:/ssh-agent"
+)
 
 echo "--- :docker: Running ${BUILDKITE_COMMAND} in ${BUILDKITE_PLUGIN_DOCKER_IMAGE} with ${args[@]}"
 docker run "${args[@]}" "${BUILDKITE_PLUGIN_DOCKER_IMAGE}" bash -c "${BUILDKITE_COMMAND}"
